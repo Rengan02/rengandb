@@ -377,6 +377,19 @@ class Database<KT extends boolean> {
         return found;
     }
 
+    filter(key: KeyType<KT>, condition: any): any {
+        if(!this.isValidDatabase()) {return;}
+        if(!key) throw this.error(`Undefined key! - ${key}`);
+        let foundArray: any[] | undefined = this.engine.get(key);
+
+        if(!Array.isArray(foundArray)) {
+            throw this.error(`Thats not an array! - ${key}`);
+        }
+
+        let found: any = foundArray.filter(condition)
+        return found;
+    }
+
     fetchAll(): any {
         if(!this.isValidDatabase()) {return null;}
         return this.data;

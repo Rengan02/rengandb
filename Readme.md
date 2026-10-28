@@ -130,6 +130,7 @@ Once initialized via `await Database.init(file, settings)`, you can use the foll
   db.find('users', u => u.id === 123);
   ```
 * **`db.findIndex(key, condition)`**: Finds the index of an element in an array.
+* **`db.filter(key, condition)`**: Returns all elements in an array that match the callback condition.
 
 ### Utility
 * **`await db.clear(really)`**: Clears the entire database if `true` is passed. (e.g., `await db.clear(true)`).

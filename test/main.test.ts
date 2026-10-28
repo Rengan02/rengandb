@@ -187,6 +187,17 @@ describe('Rengandb (Database Class)', () => {
             expect(user).toEqual({ id: 2, name: 'Bob' });
             expect(index).toBe(1);
         });
+
+        it('filter methods should work correctly', async () => {
+            await db.push('messages', { id: 1, content: 'hello?' });
+            await db.push('messages', { id: 2, content: 'henlo' });
+
+            const secondmessage = db.filter('messages', (u: any) => u.id === 2);
+            const messages = db.filter('messages', (u: any) => u.id >= 0);
+
+            expect(secondmessage).toEqual([{ id: 2, content: 'henlo' }]);
+            expect(messages).toEqual([{ id: 1, content: 'hello?' }, { id: 2, content: 'henlo' }]);
+        });
     });
 
     describe('Lodash Engine Support (useLodash: true)', () => {
